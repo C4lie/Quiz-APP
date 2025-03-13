@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-primary">{{ quiz.title }}</h2>
+  <form
+    method="POST"
+    action="{% url 'quiz_submit' quiz.id %}"
+    class="mt-4 p-4 bg-white shadow rounded"
+  >
+    {% csrf_token %} {% for question in questions %}
+    <div class="mb-4">
+      <p class="fw-bold">{{ forloop.counter }}. {{ question.question_text }}</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q{{ question.id }}"
+          value="{{ question.option1 }}"
+          required
+        />
+        <label class="form-check-label">{{ question.option1 }}</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q{{ question.id }}"
+          value="{{ question.option2 }}"
+          required
+        />
+        <label class="form-check-label">{{ question.option2 }}</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q{{ question.id }}"
+          value="{{ question.option3 }}"
+          required
+        />
+        <label class="form-check-label">{{ question.option3 }}</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q{{ question.id }}"
+          value="{{ question.option4 }}"
+          required
+        />
+        <label class="form-check-label">{{ question.option4 }}</label>
+      </div>
+    </div>
+    {% endfor %}
+    <button
+      type="submit"
+      class="btn btn-success w-100"
+    >
+      Submit Quiz
+    </button>
+  </form>
+</div>
+{% endblock %}

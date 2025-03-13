@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5 text-center">
+  <div class="card shadow p-4">
+    <h2 class="text-primary">Quiz Completed! 🎉</h2>
+    <p class="fs-4"><strong>Quiz:</strong> {{ quiz.title }}</p>
+    <p class="fs-5"><strong>Score:</strong> {{ score }} / {{ total }}</p>
+    <p class="fs-5">
+      <strong>Percentage:</strong> {{ percentage|floatformat:2 }}%
+    </p>
+
+    {% if percentage >= 70 %}
+    <p class="text-success fw-bold">Great Job! You passed! 🎯</p>
+    {% else %}
+    <p class="text-danger fw-bold">Keep practicing! 💪</p>
+    {% endif %}
+
+    <a
+      href="{% url 'quiz_list' %}"
+      class="btn btn-primary mt-3"
+      >Back to Quizzes</a
+    >
+  </div>
+</div>
+{% endblock %}
